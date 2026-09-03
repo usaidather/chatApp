@@ -5,12 +5,16 @@
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { StatusBar, useColorScheme } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+  AppButton,
+  AppImage,
+  AppText,
+  PageLayout,
+  Stack,
+} from './src/components';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -24,22 +28,37 @@ function App() {
 }
 
 function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
+    <PageLayout horizontalPadding="md" verticalPadding="md">
+      <Stack gap="lg">
+        <AppText variant="heading">Messages</AppText>
+
+        <Stack direction="row" align="center" gap="md">
+          <AppImage
+            source={{ uri: 'https://i.pravatar.cc/96?img=12' }}
+            width={48}
+            height={48}
+            borderRadius={24}
+            accessible
+            accessibilityLabel="John Doe profile picture"
+          />
+
+          <Stack flex={1} gap="xs">
+            <AppText variant="bodyMedium">John Doe</AppText>
+            <AppText
+              variant="bodySmall"
+              color="textSecondary"
+              numberOfLines={1}
+            >
+              Hey, how are you doing?
+            </AppText>
+          </Stack>
+        </Stack>
+
+        <AppButton title="Continue" fullWidth onPress={() => {}} />
+      </Stack>
+    </PageLayout>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
