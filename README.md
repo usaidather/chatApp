@@ -132,7 +132,7 @@ npm run android
 ### API
 
 Set `API_BASE_URL` in `.env` to configure the API host. The example value is
-`https://responserift.dev`:
+`https://apiur.dev`:
 
 - `GET /api/users`
 - `GET /api/posts`
