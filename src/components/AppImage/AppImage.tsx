@@ -18,6 +18,12 @@ export function AppImage({
   ...imageProps
 }: AppImageProps) {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
+  const resolvedWidth = scaleWidth(width, windowWidth);
+  const resolvedHeight = scaleWidth(width, windowWidth);
+  const resolvedBorderRadius =
+    borderRadius !== undefined && width === height
+      ? Math.min(resolvedWidth, resolvedHeight) / 2
+      : borderRadius;
 
   return (
     <Image
@@ -25,9 +31,9 @@ export function AppImage({
       style={[
         styles.base,
         {
-          width: scaleWidth(width, windowWidth),
-          height: scaleHeight(height, windowHeight),
-          borderRadius,
+          width: resolvedWidth,
+          height: resolvedHeight,
+          borderRadius: resolvedBorderRadius,
         },
         style,
       ]}

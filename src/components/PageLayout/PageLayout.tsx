@@ -9,7 +9,7 @@ import type { StyleProp, ViewProps, ViewStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import type { SafeAreaViewProps } from 'react-native-safe-area-context';
 
-import { colors, spacing } from '../../theme';
+import { colors, scaleHeight, spacing } from '../../theme';
 import type { ColorKey, SpacingKey } from '../../theme';
 
 export interface PageLayoutProps extends Omit<ViewProps, 'style'> {
@@ -32,11 +32,11 @@ export function PageLayout({
   backgroundColor = 'background',
   style,
   contentContainerStyle,
-  safeAreaEdges,
+  safeAreaEdges = ['left', 'right'],
   ...viewProps
 }: PageLayoutProps) {
   const contentStyle = [
-    styles.content,
+    styles.scrollContent,
     horizontalPadding !== 'none' && {
       paddingHorizontal: spacing[horizontalPadding],
     },
@@ -47,12 +47,15 @@ export function PageLayout({
   const content = scrollable ? (
     <ScrollView contentContainerStyle={contentStyle}>{children}</ScrollView>
   ) : (
-    <View style={contentStyle}>{children}</View>
+    <View style={[styles.content, ...contentStyle.slice(1)]}>{children}</View>
   );
 
   const body = keyboardAvoiding ? (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={
+        Platform.OS === 'ios' ? scaleHeight(120) : scaleHeight(80)
+      }
       style={styles.flex}
     >
       {content}
@@ -78,6 +81,7 @@ export function PageLayout({
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  content: { flexGrow: 1 },
+  content: { flex: 1 },
+  scrollContent: { flexGrow: 1 },
   flex: { flex: 1 },
 });

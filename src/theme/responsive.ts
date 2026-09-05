@@ -6,7 +6,7 @@ const clamp = (value: number, minimum: number, maximum: number) =>
 
 // Scaling is bounded so layouts stay usable on tablets and very small devices.
 export const scaleWidth = (size: number, windowWidth = BASE_WIDTH) =>
-  clamp((windowWidth / BASE_WIDTH) * size, size * 0.85, size * 1.35);
+  clamp((windowWidth / BASE_WIDTH) * size, size * 1, size * 1.35);
 
 export const scaleHeight = (size: number, windowHeight = BASE_HEIGHT) =>
   clamp((windowHeight / BASE_HEIGHT) * size, size * 0.9, size * 1.25);

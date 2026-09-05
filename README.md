@@ -95,3 +95,56 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+## Assessment App
+
+This project is a small React Native messaging assessment app with contacts, chat navigation, message sending, profile, settings, and block/unblock behavior.
+
+### Tech Stack
+
+- React Native CLI 0.87.1
+- TypeScript
+- React Navigation
+- TanStack React Query
+- Zustand
+- Axios
+
+### Architecture
+
+Feature code lives under `src/features`, with separate API services, hooks, presentation components, and screens. React Query owns users, messages, profile data, caching, loading states, pagination metadata, and mutations. Zustand stores only the local list of blocked user IDs. The reusable design system in `src/components` provides consistent text, layout, buttons, images, safe areas, and feedback states.
+
+### Setup
+
+```sh
+npm install
+cp .env.example .env
+
+# iOS
+cd ios
+pod install
+cd ..
+npm run ios
+
+# Android
+npm run android
+```
+
+### API
+
+Set `API_BASE_URL` in `.env` to configure the API host. The example value is
+`https://responserift.dev`:
+
+- `GET /api/users`
+- `GET /api/posts`
+- `POST /api/posts`
+
+The users and posts responses use the `{total, limit, offset, results}` envelope. The app requests the next users page using `offset` and stops when `offset + limit` reaches `total`. Posts support filtering with `userId`, and new messages are sent with the required `title`, `body`, and `userId` fields. The response normalizers also handle simple array and `data` envelopes defensively.
+
+Because there is no authentication/current-user endpoint, profiles are opened
+for the selected contact from that contact's avatar. Server posts are displayed
+as incoming messages; locally optimistic messages are displayed as outgoing
+until the server response is reconciled.
+
+### AI-Assisted Development
+
+AI-assisted tooling was used to support code review, architecture discussion, edge-case identification, and documentation. Core implementation decisions, integration, validation, and testing were reviewed by the developer.
