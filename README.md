@@ -145,6 +145,32 @@ for the selected contact from that contact's avatar. Server posts are displayed
 as incoming messages; locally optimistic messages are displayed as outgoing
 until the server response is reconciled.
 
+### Screenshots and Demo
+
+#### Chats
+
+![Chats list](appscreenshots/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-09-06%20at%2013.42.14.png)
+
+#### Settings
+
+![Settings screen](appscreenshots/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-09-06%20at%2013.42.17.png)
+
+#### Chat and message composer
+
+![Chat screen](appscreenshots/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-09-06%20at%2013.42.22.png)
+
+#### Sent message
+
+![Sent message](appscreenshots/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-09-06%20at%2013.42.33.png)
+
+#### User profile
+
+![User profile](appscreenshots/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-09-06%20at%2013.42.41.png)
+
+#### Screen recording
+
+[Watch the app demo recording](appscreenshots/Simulator%20Screen%20Recording%20-%20iPhone%2017%20Pro%20-%202026-09-05%20at%2016.13.33.mov)
+
 ### AI-Assisted Development
 
 AI-assisted tooling was used to support code review, architecture discussion, edge-case identification, and documentation. Core implementation decisions, integration, validation, and testing were reviewed by the developer.
